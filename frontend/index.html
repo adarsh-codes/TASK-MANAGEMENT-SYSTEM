@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TASK MANAGER</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="topheader">
+      <nav>
+        <ul>
+          <li class="logo">
+            <img src="icon.jpeg" alt="taskmanager" /> Task Manager
+          </li>
+          <li>DASHBOARD</li>
+          <li>ABOUT</li>
+          <li id="login">
+            <button id="loginbtn" onclick="location.href='entry.html'">
+              &#x23FB; LOGIN
+            </button>
+          </li>
+          <li id="signup"><button id="signupbtn">&#9204; SIGNUP</button></li>
+          <li id="userMenu" style="display: none;">
+            <span id="uu"></span>
+            <img src="user-icon.png" alt="User" id="userIcon">
+          </li>
+          </ul>
+      </nav>
+    </div>
+
+
+
+
+    <div class="taskContainer">
+      <button id="addTaskBtn">➕ Add Task</button> 
+
+ 
+      <div id="taskFormContainer" style="display: none;">
+          <form id="taskForm">
+              <h3>Create New Task</h3>
+              <input type="hidden" id="taskId">
+              <input type="text" id="taskTitle" placeholder="Task Title" required>
+              <textarea id="taskDesc" placeholder="Task Description"></textarea>
+              <select id="taskPriority">
+                  <option value="LOW">Low</option>
+                  <option value="MEDIUM">Medium</option>
+                  <option value="HIGH">High</option>
+              </select>
+              <select id="taskStatus">
+                  <option value="TODO">To-Do</option>
+                  <option value="IN_PROGRESS">In Progress</option>
+                  <option value="DONE">Done</option>
+                  <option value="BLOCKER">Blocker</option>
+              </select>
+              <input type="date" id="taskDueDate">
+              <button type="submit">Save Task</button>
+              <button type="button" id="cancelTaskBtn">Cancel</button>
+          </form>
+      </div>
+
+
+      <div class="filters">
+        <select id="statusFilter">
+            <option value="">All Status</option>
+            <option value="TODO">TODO</option>
+            <option value="IN_PROGRESS">IN PROGRESS</option>
+            <option value="DONE">DONE</option>
+        </select>
+    
+        <select id="priorityFilter">
+            <option value="">All Priority</option>
+            <option value="LOW">LOW</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="HIGH">HIGH</option>
+        </select>
+    
+        <input type="date" id="deadlineFilter">
+    
+        <button onclick="applyFilters()">Apply Filters</button>
+    </div>
+    
+      
+      <div id="taskList"></div> 
+  </div>
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+    <div class="bottom">
+      <span class="copy">COPYRIGHTS 2025 ADARSH</span>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
