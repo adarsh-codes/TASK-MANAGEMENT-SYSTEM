@@ -13,7 +13,6 @@
           <li class="logo">
             <img src="icon.jpeg" alt="taskmanager" /> Task Manager
           </li>
-          <li>DASHBOARD</li>
           <li>ABOUT</li>
           <li id="login">
             <button id="loginbtn" onclick="location.href='entry.html'">
@@ -30,15 +29,30 @@
     </div>
 
 
+    <div class="sidewindow">
+      
+  <ul class="lists">
+    <li> &#x1F680; Dashboard</li>
+    <li id="pend" onclick="showpending()">📋 Pending Tasks</li>
+    <li id="h" onclick="showhigh()">📌 Priority Tasks</li>
+    <li id="comp" onclick="showcomplete()">✅ Completed Tasks</li>
+    <li id="overdue" onclick="showoverdue()">&#x231B; Overdue Tasks</li>
+  </ul>
+    </div>
 
 
     <div class="taskContainer">
-      <button id="addTaskBtn">➕ Add Task</button> 
+      <button id="addTaskBtn">➕ Add Task</button>
+      <div class="buttonstop">
+         
+        
+      </div>
+    
 
  
       <div id="taskFormContainer" style="display: none;">
           <form id="taskForm">
-              <h3>Create New Task</h3>
+              <h3 class="createoredit">Create New Task</h3>
               <input type="hidden" id="taskId">
               <input type="text" id="taskTitle" placeholder="Task Title" required>
               <textarea id="taskDesc" placeholder="Task Description"></textarea>
@@ -61,23 +75,9 @@
 
 
       <div class="filters">
-        <select id="statusFilter">
-            <option value="">All Status</option>
-            <option value="TODO">TODO</option>
-            <option value="IN_PROGRESS">IN PROGRESS</option>
-            <option value="DONE">DONE</option>
-        </select>
-    
-        <select id="priorityFilter">
-            <option value="">All Priority</option>
-            <option value="LOW">LOW</option>
-            <option value="MEDIUM">MEDIUM</option>
-            <option value="HIGH">HIGH</option>
-        </select>
-    
         <input type="date" id="deadlineFilter">
     
-        <button onclick="applyFilters()">Apply Filters</button>
+        <button onclick="applyFilters()">Check Due Tasks</button>
     </div>
     
       

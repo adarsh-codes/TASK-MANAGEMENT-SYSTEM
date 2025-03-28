@@ -10,6 +10,7 @@ body{
     min-height: 100vh;
     background: #ffa500;
     transition: .5s;
+   
 }
 
 body.active{
@@ -169,3 +170,12 @@ a {
     font-size: 20px;
     color: black;
 }
+
+.form-box .form input[type="checkbox"]{
+    margin-right: auto;
+}
+
+.sh{
+    margin-left: 10px;
+}
+

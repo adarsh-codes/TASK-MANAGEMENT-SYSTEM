@@ -28,8 +28,18 @@ document.querySelector('.signupform form').addEventListener('submit',async funct
     const password = this.querySelector('input[placeholder="Password"]').value;
     const confirmpassword = this.querySelector('input[placeholder="Confirm Password"]').value;
 
+    if(!email.endsWith("@gmail.com")){
+        alert("Invalid Email Format!");
+        return;
+    }
     if(password != confirmpassword){
-        alert("Passwords do not match!")
+        alert("Passwords do not match!");
+        return;
+    }
+
+    if(password.length < 8){
+        alert("Password should be at least 8 characters!");
+        return;
     }
 
   
@@ -63,6 +73,10 @@ document.querySelector('.form').addEventListener("submit", async function (event
     const username = this.querySelector('input[placeholder="Username"]').value;
     const password = this.querySelector('input[placeholder="Password"]').value;
 
+    
+
+   
+
     try {
         const response = await fetch("http://localhost:8080/auth/login", {
             method: "POST",
@@ -85,3 +99,18 @@ document.querySelector('.form').addEventListener("submit", async function (event
     }
 });
 
+
+// show password functionality
+
+function showpass(){
+    const passlist = document.querySelectorAll('.pass');
+    const show = document.querySelector('.show');
+
+    passlist.forEach((pass)=>{
+        if(pass.type == "password"){
+            pass.type = "text";
+        }
+        else pass.type = "password";
+    })
+    
+}
