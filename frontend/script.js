@@ -19,6 +19,22 @@ if (token) {
   userMenu.style.display = "none";
 }
 
+document.getElementById('uu').onclick = function(){
+  if (!confirm("Are you sure you want to log out?")) return;
+
+  localStorage.removeItem("jwtToken");
+  signupbutton.style.display = "block";
+  loginbutton.style.display = "block";
+  userMenu.style.display = "none";
+
+  document.getElementById("taskList").innerHTML =
+    "<p>You have been logged out.</p>";
+
+  setTimeout(() => {
+    window.location.href = "entry.html";
+  }, 1000);
+
+}
 userIcon.onclick = function () {
   if (!confirm("Are you sure you want to log out?")) return;
 
@@ -33,6 +49,7 @@ userIcon.onclick = function () {
   setTimeout(() => {
     window.location.href = "entry.html";
   }, 1000);
+
 };
 
 async function fetchTasks(token) {
@@ -161,6 +178,8 @@ document.getElementById("taskForm").onsubmit = async function (e) {
 };
 
 async function editTask(taskId) {
+
+  alert("Scroll up to edit the task!");
   const token = localStorage.getItem("jwtToken");
   if (!token) {
     alert("You must be logged in to edit tasks!");
@@ -419,3 +438,31 @@ function showhigh() {
         hbtn.setAttribute("data-filtered", "true");
     }
 }
+
+
+
+// Function to decode JWT and get the payload
+function getUsernameFromToken() {
+  let token = localStorage.getItem("jwtToken"); 
+
+  if (!token) {
+      console.log("No token found");
+      return null;
+  }
+
+  try {
+      let base64Url = token.split(".")[1]; 
+      let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/"); 
+      let decodedData = JSON.parse(atob(base64)); 
+
+      return decodedData.sub || decodedData.username || null; 
+  } catch (e) {
+      console.error("Invalid Token", e);
+      return null;
+  }
+}
+
+
+let username = getUsernameFromToken();
+
+// document.querySelector('.heading').textContent = username;
