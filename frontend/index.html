@@ -13,87 +13,74 @@
           <li class="logo">
             <img src="icon.jpeg" alt="taskmanager" /> Task Manager
           </li>
-          <li>ABOUT</li>
+
           <li id="login">
             <button id="loginbtn" onclick="location.href='entry.html'">
               &#x23FB; LOGIN
             </button>
           </li>
           <li id="signup"><button id="signupbtn">&#9204; SIGNUP</button></li>
-          <li id="userMenu" style="display: none;">
-            <span id="uu"></span>
-            <img src="user-icon.png" alt="User" id="userIcon">
+          <li id="userMenu" style="display: none">
+            <span id="uu">LOGOUT</span>
+            <img src="user-icon.png" alt="User" id="userIcon" />
           </li>
-          </ul>
+        </ul>
       </nav>
     </div>
 
-
     <div class="sidewindow">
-      
-  <ul class="lists">
-    <li> &#x1F680; Dashboard</li>
-    <li id="pend" onclick="showpending()">📋 Pending Tasks</li>
-    <li id="h" onclick="showhigh()">📌 Priority Tasks</li>
-    <li id="comp" onclick="showcomplete()">✅ Completed Tasks</li>
-    <li id="overdue" onclick="showoverdue()">&#x231B; Overdue Tasks</li>
-  </ul>
+      <ul class="lists">
+        <li>&#x1F680; Dashboard</li>
+        <li id="pend" onclick="showpending()">📋 Pending Tasks</li>
+        <li id="h" onclick="showhigh()">📌 Priority Tasks</li>
+        <li id="comp" onclick="showcomplete()">✅ Completed Tasks</li>
+        <li id="overdue" onclick="showoverdue()">&#x231B; Overdue Tasks</li>
+      </ul>
     </div>
 
+    <!-- <div class="usermanage">
+      <div class="heading"><img class="usericon" src="user-icon.png"><h3></h3></div>
+    </div> -->
 
     <div class="taskContainer">
       <button id="addTaskBtn">➕ Add Task</button>
-      <div class="buttonstop">
-         
-        
-      </div>
-    
+      <div class="buttonstop"></div>
 
- 
-      <div id="taskFormContainer" style="display: none;">
-          <form id="taskForm">
-              <h3 class="createoredit">Create New Task</h3>
-              <input type="hidden" id="taskId">
-              <input type="text" id="taskTitle" placeholder="Task Title" required>
-              <textarea id="taskDesc" placeholder="Task Description"></textarea>
-              <select id="taskPriority">
-                  <option value="LOW">Low</option>
-                  <option value="MEDIUM">Medium</option>
-                  <option value="HIGH">High</option>
-              </select>
-              <select id="taskStatus">
-                  <option value="TODO">To-Do</option>
-                  <option value="IN_PROGRESS">In Progress</option>
-                  <option value="DONE">Done</option>
-                  <option value="BLOCKER">Blocker</option>
-              </select>
-              <input type="date" id="taskDueDate">
-              <button type="submit">Save Task</button>
-              <button type="button" id="cancelTaskBtn">Cancel</button>
-          </form>
+      <div id="taskFormContainer" style="display: none">
+        <form id="taskForm">
+          <h3 class="createoredit">Create New Task</h3>
+          <input type="hidden" id="taskId" />
+          <input type="text" id="taskTitle" placeholder="Task Title" required />
+          <textarea id="taskDesc" placeholder="Task Description"></textarea>
+          <select id="taskPriority">
+            <option value="LOW">Low</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HIGH">High</option>
+          </select>
+          <select id="taskStatus">
+            <option value="TODO">To-Do</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="DONE">Done</option>
+            <option value="BLOCKER">Blocker</option>
+          </select>
+          <input type="date" id="taskDueDate" />
+          <button type="submit">Save Task</button>
+          <button type="button" id="cancelTaskBtn">Cancel</button>
+        </form>
       </div>
-
 
       <div class="filters">
-        <input type="date" id="deadlineFilter">
-    
+        <input type="date" id="deadlineFilter" />
+
         <button onclick="applyFilters()">Check Due Tasks</button>
+      </div>
+
+
+
+      <div id="taskList"></div>
     </div>
-    
-      
-      <div id="taskList"></div> 
-  </div>
-  
-  
 
 
-
-
-
-
-
-
-  
 
 
     <div class="bottom">

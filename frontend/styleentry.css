@@ -179,3 +179,392 @@ a {
     margin-left: 10px;
 }
 
+
+
+
+
+/* responsive design */
+
+
+
+
+
+@media (max-width: 768px) {
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #ffa500;
+        transition: .5s;
+       
+    }
+    
+    body.active{
+        background: #03a9F4;
+    }
+    
+    .entrycontainer{
+        position: relative;
+        width: 400px;
+        height: 250px;
+        margin: 10px;
+    }
+    
+    .orangeBG{
+        position: absolute;
+        top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 210px;
+        background: rgba(255,255,255,.2);
+        box-shadow: 0 3px 22px rgba(0,0,0,.15);
+    }
+    
+    .orangeBG .box{
+        position: relative;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .form-box{
+        position: relative;
+        background: #fff;
+        height: 100%;
+        width: 50%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 5px 45px rgba(0,0,0,.25);
+        transition: ease-in-out .5s;
+        overflow: hidden;
+    }
+    
+    .form-box.active{
+        left: 50%;
+    }
+    
+    .form-box .form{
+        position: absolute;
+        width:80%;
+        transition: .5s;
+        padding: 25px;
+    }
+    
+    .form-box .form form{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .form input{
+        margin-bottom: 10px;
+        padding: 5px;
+        outline: none;
+        border: 1px solid #333;
+    }
+    
+    .form form h3{
+        text-align: center;
+        font-size: 10px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    
+    
+    
+    /*
+    
+    FOLLOWING IS THE TRANSITIONS FOR LOGIN SIGNUP FORMS -
+    
+    
+    */
+    .form-box .signinform{
+        left: 0%;
+        transition-delay: 0.15s;
+    }
+    
+    .form-box.active .signinform{
+        left: -100%;
+        transition-delay: 0.15s;
+    } 
+    
+    .form-box .signupform{
+        left: 100%;
+        transition-delay: 0.15s;
+    }
+    
+    .form-box.active .signupform{
+        left: 0%;
+        transition-delay: 0.15s;
+    }
+    
+    
+    /*        */
+    
+    
+    
+    
+    .box h2{
+        color: #fff;
+        font-size: 15px;
+        font-weight: bolder;
+        margin-bottom: 5px;
+    }
+    
+    .orangeBG .box button{
+        padding: 5px 10px;
+        background: white;
+        color: black;
+        font-size: 8px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        border-radius: 7px;
+    }
+    
+    
+    .form-box .form input[type="submit"]{
+        cursor: pointer;
+        background: #ffa500;
+        max-width: 100px;
+        color: white;
+        font-size: 10px;
+        border-radius: 15px;
+    }
+    
+    
+    .form-box .form input[value="Sign Up"]{
+        cursor: pointer;
+        background: #03a9F4;
+        max-width: 100px;
+        color: white;
+        font-size: 10px;
+        border-radius: 7px;
+    
+    }
+    
+    a {
+        font-size: 10px;
+        color: black;
+    }
+    
+    .form-box .form input[type="checkbox"]{
+        margin-right: auto;
+    }
+    
+    .sh{
+        margin-left: 10px;
+    }
+    
+  }
+
+
+
+@media (max-width: 300px) {
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #ffa500;
+        transition: .5s;
+       
+    }
+    
+    body.active{
+        background: #03a9F4;
+    }
+    
+    .entrycontainer{
+        position: relative;
+        width: 120px;
+        height: 140px;
+        margin: 5px;
+    }
+    
+    .orangeBG{
+        position: absolute;
+        top: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 120px;
+        background: rgba(255,255,255,.2);
+        box-shadow: 0 1px 9px rgba(0,0,0,.15);
+    }
+    
+    .orangeBG .box{
+        position: relative;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .form-box{
+        position: relative;
+        background: #fff;
+        height: 100%;
+        width: 50%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 1px 9px rgba(0,0,0,.25);
+        transition: ease-in-out .5s;
+        overflow: hidden;
+    }
+    
+    .form-box.active{
+        left: 50%;
+    }
+    
+    .form-box .form{
+        position: absolute;
+        width:80%;
+        transition: .5s;
+        padding: 5px;
+    }
+    
+    .form-box .form form{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .form input{
+        margin-bottom: 5px;
+        padding: 2px;
+        outline: none;
+        border: 1px solid #333;
+    }
+    
+    .form form h3{
+        text-align: center;
+        font-size: 5px;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+    
+    
+    
+    /*
+    
+    FOLLOWING IS THE TRANSITIONS FOR LOGIN SIGNUP FORMS -
+    
+    
+    */
+    .form-box .signinform{
+        left: 0%;
+        transition-delay: 0.15s;
+    }
+    
+    .form-box.active .signinform{
+        left: -100%;
+        transition-delay: 0.15s;
+    } 
+    
+    .form-box .signupform{
+        left: 100%;
+        transition-delay: 0.15s;
+    }
+    
+    .form-box.active .signupform{
+        left: 0%;
+        transition-delay: 0.15s;
+    }
+    
+    
+    /*        */
+    
+    
+    
+    
+    .box h2{
+        color: #fff;
+        font-size: 5px;
+        font-weight: bolder;
+        margin-bottom: 2px;
+    }
+    
+    .orangeBG .box button{
+        padding: 2px 5px;
+        background: white;
+        color: black;
+        font-size: 4px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+    
+    
+    .form-box .form input[type="submit"]{
+        cursor: pointer;
+        background: #ffa500;
+        max-width: 20px;
+        color: white;
+        font-size: 4px;
+        border-radius: 5px;
+    }
+    
+    
+    .form-box .form input[value="Sign Up"]{
+        cursor: pointer;
+        background: #03a9F4;
+        max-width: 100px;
+        color: white;
+        font-size: 4px;
+        border-radius: 5px;
+    
+    }
+  
+    
+    a {
+        font-size: 5px;
+        color: black;
+    }
+    
+    .form-box .form input[type="checkbox"]{
+        margin-right: auto;
+        height: 5px;
+        width: 5px;
+    }
+    
+    .sh{
+        margin-left: 2px;
+        font-size: 5px;
+    }
+
+    .showPass, .passwordBox, .userBox, .show{
+        font-size: 5px;
+    }
+    
+  }
+  
+  

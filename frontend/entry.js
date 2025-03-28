@@ -73,9 +73,6 @@ document.querySelector('.form').addEventListener("submit", async function (event
     const username = this.querySelector('input[placeholder="Username"]').value;
     const password = this.querySelector('input[placeholder="Password"]').value;
 
-    
-
-   
 
     try {
         const response = await fetch("http://localhost:8080/auth/login", {
@@ -103,8 +100,10 @@ document.querySelector('.form').addEventListener("submit", async function (event
 // show password functionality
 
 function showpass(){
-    const passlist = document.querySelectorAll('.pass');
+    const passlist = document.querySelectorAll('.passwordBox');
     const show = document.querySelector('.show');
+
+
 
     passlist.forEach((pass)=>{
         if(pass.type == "password"){

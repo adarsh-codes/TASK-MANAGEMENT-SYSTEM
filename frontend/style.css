@@ -1,4 +1,3 @@
-/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,9 +5,8 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Background */
 body {
-    background: #f4f4f4; /* Softer background */
+    background: #f4f4f4; 
     color: #333;
 }
 
@@ -16,7 +14,7 @@ body {
 .topheader {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1500;
 }
 
 nav {
@@ -91,6 +89,7 @@ button:hover {
     justify-content: center;
 }
 
+
 #userIcon {
     width: 40px;
     height: 40px;
@@ -117,6 +116,7 @@ button:hover {
     width: 90%;
     margin: 20px auto;
     padding: 30px;
+    
 }
 
 /* Task List */
@@ -138,10 +138,11 @@ button:hover {
     position: relative;
     text-align: left;
     height: 400px;
+    border-color: #58d68d;
 }
 
 .overdue{
-    background: rgb(223, 119, 87);
+    background: rgb(246, 168, 144);
 }
 
 .task-title{
@@ -435,6 +436,148 @@ body {
 
 
 
+/* .usermanage{
+    display: none;
+    background: #1C1C1C;
+    color: white;
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    top: 65px;
+    height: 50%;
+    width: 30%;
+    overflow: none;
+    border-radius: 5px;
+    border-width: 10px;
+    border-color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
 
+.heading{
+    margin-left: 50%;
+}
+
+.usericon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+
+
+
+/* Responsive Styles */
+
+/* Medium Screens (Tablets) */
+@media (max-width: 1024px) {
+    .taskContainer {
+        width: 100%;
+        margin-left: 0; /* Remove left margin for better fit */
+        padding: 20px;
+    }
+
+    .sidewindow {
+        width: 220px; /* Reduce size */
+    }
+
+    .taskContainer {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+
+    .task-item {
+        width: 48%; /* Make task items fit better */
+    }
+
+    #addTaskbtn{
+        margin-right: auto;
+        width: 20%;
+    }
+
+    .com-btn{
+        font-size: 12px;
+    }
+}
+
+/* Small Screens (Phones) */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .sidewindow {
+        width: 100%;
+        position: relative;
+        border-right: none;
+    }
+
+    .taskContainer {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .task-item {
+        width: 100%; /* Stack task items */
+    }
+
+    #addTaskBtn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .buttonstop {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #addTaskbtn{
+        margin-right: auto;
+        width: 20%;
+    }
+
+    .com-btn{
+        font-size: 12px;
+    }
+}
+
+/* Extra Small Screens (Mobile) */
+@media (max-width: 480px) {
+    .task-item {
+        width: 100%;
+    }
+
+    .sidewindow {
+        display: none; /* Hide sidebar on very small screens */
+    }
+
+    .taskContainer {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .bottom {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    #addTaskbtn{
+        margin-right: auto;
+        width: 20%;
+    }
+
+    .com-btn{
+        font-size: 12px;
+    }
+}
 
 
