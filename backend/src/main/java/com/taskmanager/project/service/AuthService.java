@@ -4,6 +4,7 @@ import com.taskmanager.project.security.JwtUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
@@ -21,13 +22,15 @@ public class AuthService {
         this.userDetailsService = userDetailsService;
     }
 
-    public String login(String username, String password) {
+    public String login(String username, String password, String email) {
         System.out.println("Login Attempt for User: " + username);
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         System.out.println("Authentication Successful for: " + username);
 
-        return jwtUtil.generateToken(username);
+        return jwtUtil.generateToken(username,email);
     }
+
+
 
 }

@@ -1,16 +1,15 @@
 package com.taskmanager.project.service;
 
-import com.taskmanager.project.task.entity.Task;
+import com.taskmanager.project.entity.Task;
 import com.taskmanager.project.repository.TaskRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import com.taskmanager.project.repository.UserRepository;
-import com.taskmanager.project.auth.entity.User;
+import com.taskmanager.project.entity.User;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
 @Service
 public class TaskService {
@@ -38,7 +37,7 @@ public class TaskService {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
 
 
-        return taskRepository.findByUserId(user.getId());
+        return taskRepository.findByUserId(user.getId(),Sort.by(Sort.Direction.ASC, "id"));
     }
 
 
@@ -76,6 +75,7 @@ public class TaskService {
         }).orElseThrow(() -> new RuntimeException("Task not found"));
     }
 
+  
     public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }

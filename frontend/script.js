@@ -19,38 +19,22 @@ if (token) {
   userMenu.style.display = "none";
 }
 
-document.getElementById('uu').onclick = function(){
-  if (!confirm("Are you sure you want to log out?")) return;
+// document.getElementById('logOut').onclick = function(){
+//   if (!confirm("Are you sure you want to log out?")) return;
 
-  localStorage.removeItem("jwtToken");
-  signupbutton.style.display = "block";
-  loginbutton.style.display = "block";
-  userMenu.style.display = "none";
+//   localStorage.removeItem("jwtToken");
+//   signupbutton.style.display = "block";
+//   loginbutton.style.display = "block";
+//   userMenu.style.display = "none";
 
-  document.getElementById("taskList").innerHTML =
-    "<p>You have been logged out.</p>";
+//   document.getElementById("taskList").innerHTML =
+//     "<p>You have been logged out.</p>";
 
-  setTimeout(() => {
-    window.location.href = "entry.html";
-  }, 1000);
+//   setTimeout(() => {
+//     window.location.href = "entry.html";
+//   }, 1000);
 
-}
-userIcon.onclick = function () {
-  if (!confirm("Are you sure you want to log out?")) return;
-
-  localStorage.removeItem("jwtToken");
-  signupbutton.style.display = "block";
-  loginbutton.style.display = "block";
-  userMenu.style.display = "none";
-
-  document.getElementById("taskList").innerHTML =
-    "<p>You have been logged out.</p>";
-
-  setTimeout(() => {
-    window.location.href = "entry.html";
-  }, 1000);
-
-};
+// }
 
 async function fetchTasks(token) {
   await fetch("http://localhost:8080/tasks/user", {
@@ -95,13 +79,10 @@ async function fetchTasks(token) {
     <hr size="5">
     <p>${task.description || "No description"}</p>
     <hr size="2">
-    <span class="task-priority priority-${priorityClass}">${
+    <span class="task-priority priority-${priorityClass}" onclick="editPriority(this,${task.id})">${
             task.priority
           }</span>
-    <span class="task-status status-${statusClass}">${task.status.replace(
-            "_",
-            " "
-          )}</span>
+    <span class="task-status status-${statusClass} onclick="editStatus(this,${task.id})"">${task.status.replace( "_"," ")}</span>
     <br>
    
     <span class="task-due-date">📅 Due Date: ${
@@ -165,6 +146,7 @@ document.getElementById("taskForm").onsubmit = async function (e) {
     if (response.ok) {
       alert(taskId ? "Task updated successfully!" : "Task added successfully!");
       taskFormContainer.style.display = "none";
+      taskblur.style.display = "none";
       document.getElementById("taskForm").reset();
       document.getElementById("taskId").value = "";
       fetchTasks(token);
@@ -178,8 +160,6 @@ document.getElementById("taskForm").onsubmit = async function (e) {
 };
 
 async function editTask(taskId) {
-
-  alert("Scroll up to edit the task!");
   const token = localStorage.getItem("jwtToken");
   if (!token) {
     alert("You must be logged in to edit tasks!");
@@ -203,6 +183,7 @@ async function editTask(taskId) {
       document.getElementById("taskDueDate").value = task.dueDate || "";
 
       document.querySelector(".createoredit").innerHTML = "Edit Task";
+      taskblur.style.display = "block";
       taskFormContainer.style.display = "block";
     })
     .catch((error) => console.error("Error fetching task:", error));
@@ -231,16 +212,19 @@ function deleteTask(taskId) {
 
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskFormContainer = document.getElementById("taskFormContainer");
+const taskblur = document.querySelector('.task-div-blur');
 const cancelTaskBtn = document.getElementById("cancelTaskBtn");
 
 addTaskBtn.onclick = function () {
   document.querySelector(".createoredit").innerHTML = "Create A Task";
 
+  taskblur.style.display = "block";
   taskFormContainer.style.display = "block";
 };
 
 cancelTaskBtn.onclick = function () {
   taskFormContainer.style.display = "none";
+  taskblur.style.display = "none";
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDesc").value = "";
   document.getElementById("taskPriority").value = "";
@@ -320,149 +304,192 @@ async function doneTask(taskId) {
   }
 }
 
-function showpending() {
-    const pendbtn = document.getElementById("pend");
-    const taskcard = document.querySelectorAll(".task-item");
+// SIDE WINDOW BUTTONS-
 
-    let isFiltered = pendbtn.getAttribute("data-filtered") === "true";
+function selectMenuItem(clickedItem) {
+  document.querySelectorAll(".lists li").forEach((item) => {
+    item.classList.remove("selected");
+  });
 
-    if (isFiltered) {
-        taskcard.forEach((task) => {
-            task.style.display = "block";
-        });
-
-        pendbtn.style.background = ""; 
-        pendbtn.setAttribute("data-filtered", "false");
-    } else {
-        taskcard.forEach((task) => {
-            const st = task.getAttribute("data-status");
-            if (st === "DONE") {
-                task.style.display = "none";
-            }
-        });
-
-        pendbtn.style.background = "rgba(33, 36, 5, 0.1)"; 
-        pendbtn.setAttribute("data-filtered", "true");
-    }
+  clickedItem.classList.add("selected");
 }
 
+function showAll() {
+  const allbtn = document.getElementById("all");
+  selectMenuItem(allbtn);
+  const taskcard = document.querySelectorAll(".task-item");
+
+  taskcard.forEach((task) => {
+    task.style.display = "block";
+  });
+}
+
+function showpending() {
+  const pendbtn = document.getElementById("pend");
+  selectMenuItem(pendbtn);
+  const taskcard = document.querySelectorAll(".task-item");
+
+  taskcard.forEach((task) => {
+    const st = task.getAttribute("data-status");
+    if (st === "DONE") {
+      task.style.display = "none";
+    } else {
+      task.style.display = "block";
+    }
+  });
+}
 
 function showcomplete() {
-    const compbtn = document.getElementById("comp");
-    const taskcard = document.querySelectorAll(".task-item");
+  const compbtn = document.getElementById("comp");
+  selectMenuItem(compbtn);
+  const taskcard = document.querySelectorAll(".task-item");
 
-    let isFiltered = compbtn.getAttribute("data-filtered") === "true";
-
-    if (isFiltered) {
-        taskcard.forEach((task) => {
-            task.style.display = "block";
-        });
-
-        compbtn.style.background = ""; 
-        compbtn.setAttribute("data-filtered", "false");
+  taskcard.forEach((task) => {
+    const st = task.getAttribute("data-status");
+    if (st === "DONE") {
+      task.style.display = "block";
     } else {
-        taskcard.forEach((task) => {
-            const st = task.getAttribute("data-status");
-            if (st === "DONE") {
-                task.style.display = "block";
-            }
-            else{
-                task.style.display = "none";
-            }
-        });
-
-        compbtn.style.background = "rgba(33, 36, 5, 0.1)"; 
-        compbtn.setAttribute("data-filtered", "true");
+      task.style.display = "none";
     }
+  });
 }
-
 
 function showoverdue() {
-    const overbtn = document.getElementById("overdue");
-    const taskcard = document.querySelectorAll(".task-item");
+  const overbtn = document.getElementById("overdue");
+  selectMenuItem(overbtn);
+  const taskcard = document.querySelectorAll(".task-item");
 
-    let isFiltered = overbtn.getAttribute("data-filtered") === "true";
+  const today = new Date().toISOString().split("T")[0];
 
-    if (isFiltered) {
-        taskcard.forEach((task) => {
-            task.style.display = "block";
-        });
-
-        overbtn.style.background = "";
-        overbtn.setAttribute("data-filtered", "false");
+  taskcard.forEach((task) => {
+    const dueDate = task.getAttribute("data-due");
+    if (dueDate && dueDate < today) {
+      task.style.display = "block";
     } else {
-        const today = new Date().toISOString().split("T")[0];
-
-        taskcard.forEach((task) => {
-            const dueDate = task.getAttribute("data-due");
-            if (dueDate && dueDate < today) {
-                task.style.display = "block";
-            } else {
-                task.style.display = "none";
-            }
-        });
-
-        overbtn.style.background = "rgba(33, 36, 5, 0.1)";
-        overbtn.setAttribute("data-filtered", "true");
+      task.style.display = "none";
     }
+  });
 }
-
-
-
 
 function showhigh() {
-    const hbtn = document.getElementById("h");
-    const taskcard = document.querySelectorAll(".task-item");
+  const hbtn = document.getElementById("h");
+  selectMenuItem(h);
+  const taskcard = document.querySelectorAll(".task-item");
 
-    let isFiltered = hbtn.getAttribute("data-filtered") === "true";
-
-    if (isFiltered) {
-        taskcard.forEach((task) => {
-            task.style.display = "block";
-        });
-
-        hbtn.style.background = ""; 
-        hbtn.setAttribute("data-filtered", "false");
+  taskcard.forEach((task) => {
+    const st = task.getAttribute("data-priority");
+    if (st === "HIGH") {
+      task.style.display = "block";
     } else {
-        taskcard.forEach((task) => {
-            const st = task.getAttribute("data-priority");
-            if (st === "HIGH") {
-                task.style.display = "block";
-            }
-            else{
-                task.style.display = "none";
-            }
-        });
-
-        hbtn.style.background = "rgba(33, 36, 5, 0.1)"; 
-        hbtn.setAttribute("data-filtered", "true");
+      task.style.display = "none";
     }
+  });
 }
 
-
-
 // Function to decode JWT and get the payload
-function getUsernameFromToken() {
-  let token = localStorage.getItem("jwtToken"); 
+function getUserDetailsFromToken() {
+  let token = localStorage.getItem("jwtToken");
 
   if (!token) {
-      console.log("No token found");
-      return null;
+    console.log("No token found");
+    return null;
   }
 
   try {
-      let base64Url = token.split(".")[1]; 
-      let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/"); 
-      let decodedData = JSON.parse(atob(base64)); 
+    let base64Url = token.split(".")[1];
+    let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    let decodedData = JSON.parse(atob(base64));
 
-      return decodedData.sub || decodedData.username || null; 
+    return { username: decodedData.sub, email: decodedData.email };
   } catch (e) {
-      console.error("Invalid Token", e);
-      return null;
+    console.error("Invalid Token", e);
+    return null;
   }
 }
 
+let userdetails = getUserDetailsFromToken();
 
-let username = getUsernameFromToken();
+document.querySelector(".displayUsername").textContent = userdetails.username;
+document.querySelector(".emailWrite").value = userdetails.email;
+document.querySelector(".userWrite").value = userdetails.username;
 
-// document.querySelector('.heading').textContent = username;
+// show or hide user manager div
+function manageUser() {
+  let manageuserdiv = document.querySelector(".userManage");
+
+  manageuserdiv.hidden = !manageuserdiv.hidden;
+
+ 
+}
+
+document.getElementById('closeManage').onclick = function(){
+  let manageuserdiv = document.querySelector(".userManage");
+
+  manageuserdiv.hidden = !manageuserdiv.hidden;
+}
+
+
+
+// // change email, username, password
+
+// // Function to enable editing for Email
+// function changeEmail() {
+//   let emailInput = document.querySelector('.emailWrite');
+//   let emailBtn = document.getElementById('emailEdit');
+
+//   if (emailBtn.innerText === "Change Email") {
+//     emailInput.readOnly = false;
+//     emailInput.focus();
+//     emailBtn.innerText = "Save Email";
+//   } else {
+//     let newEmail = emailInput.value.trim();
+//     if (!validateEmail(newEmail)) {
+//       alert("Invalid email format!");
+//       return;
+//     }
+//     emailInput.readOnly = true;
+//     emailBtn.innerText = "Change Email";
+//     alert("Email updated successfully!");
+//   }
+// }
+
+// // Function to enable editing for Username
+// function changeUsername() {
+//   let userInput = document.querySelector('.userWrite');
+//   let userBtn = document.getElementById('usernameEdit');
+
+//   if (userBtn.innerText === "Change Username") {
+//     userInput.readOnly = false;
+//     userInput.focus();
+//     userBtn.innerText = "Save Username";
+//   } else {
+//     let newuser = userInput.value.trim();
+
+//     userInput.readOnly = true;
+//     userBtn.innerText = "Change Username";
+//     alert("Username updated successfully!");
+//   }
+// }
+
+// // Function to show/hide password fields
+// function changePass() {
+//   let oldPasswordInput = document.querySelector('.oldpassWord');
+//   let newPasswordInput = document.querySelector('.newpassWord');
+//   let passwordEditButton = document.getElementById('passwordEdit');
+
+//   let isHidden = oldPasswordInput.hidden && newPasswordInput.hidden;
+//   oldPasswordInput.hidden = !isHidden;
+//   newPasswordInput.hidden = !isHidden;
+
+//   passwordEditButton.textContent = isHidden ? "Save Password" : "Change Password";
+// }
+
+// // Email validation function
+// function validateEmail(email) {
+//   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+// }
+
+
+
+
+

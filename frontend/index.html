@@ -20,8 +20,8 @@
             </button>
           </li>
           <li id="signup"><button id="signupbtn">&#9204; SIGNUP</button></li>
-          <li id="userMenu" style="display: none">
-            <span id="uu">LOGOUT</span>
+          <li id="userMenu" onclick="manageUser()">
+            <span class="displayUsername"></span>
             <img src="user-icon.png" alt="User" id="userIcon" />
           </li>
         </ul>
@@ -30,7 +30,7 @@
 
     <div class="sidewindow">
       <ul class="lists">
-        <li>&#x1F680; Dashboard</li>
+        <li id="all" onclick="showAll()">&#x1F680; All Tasks</li>
         <li id="pend" onclick="showpending()">📋 Pending Tasks</li>
         <li id="h" onclick="showhigh()">📌 Priority Tasks</li>
         <li id="comp" onclick="showcomplete()">✅ Completed Tasks</li>
@@ -38,14 +38,29 @@
       </ul>
     </div>
 
-    <!-- <div class="usermanage">
-      <div class="heading"><img class="usericon" src="user-icon.png"><h3></h3></div>
-    </div> -->
+    <div class="userManage" hidden>
+      <div class="heading">
+        <h3>User Profile</h3>
+      </div>
+      <button id="closeManage">Close</button>
+      <div class="details">
+        <span>Email :</span>
+        <input type="email" class="emailWrite"></input>
+        <button id="emailEdit" onclick="changeEmail()">Change Email</button>
+        <span>Username :</span>
+        <input type="text" class="userWrite"></input>
+        <button id="usernameEdit" onclick="changeUsername()">Change Username</button>
+        <input class="oldpassWord" type="text" hidden placeholder="Old Password">
+        <input class="newpassWord" type="text" hidden placeholder="New Password">
+        <button id="passwordEdit" onclick="changePass()">Change Password</button>
+      </div>
+    </div>
 
     <div class="taskContainer">
       <button id="addTaskBtn">➕ Add Task</button>
       <div class="buttonstop"></div>
 
+      <div class="task-div-blur">
       <div id="taskFormContainer" style="display: none">
         <form id="taskForm">
           <h3 class="createoredit">Create New Task</h3>
@@ -68,6 +83,7 @@
           <button type="button" id="cancelTaskBtn">Cancel</button>
         </form>
       </div>
+    </div>
 
       <div class="filters">
         <input type="date" id="deadlineFilter" />
@@ -75,13 +91,8 @@
         <button onclick="applyFilters()">Check Due Tasks</button>
       </div>
 
-
-
       <div id="taskList"></div>
     </div>
-
-
-
 
     <div class="bottom">
       <span class="copy">COPYRIGHTS 2025 ADARSH</span>
