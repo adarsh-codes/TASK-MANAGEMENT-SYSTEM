@@ -1,4 +1,4 @@
-package com.taskmanager.project.auth.entity;
+package com.taskmanager.project.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

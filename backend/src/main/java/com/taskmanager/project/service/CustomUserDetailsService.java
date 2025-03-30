@@ -1,6 +1,6 @@
 package com.taskmanager.project.service;
 
-import com.taskmanager.project.auth.entity.User;
+import com.taskmanager.project.entity.User;
 import com.taskmanager.project.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

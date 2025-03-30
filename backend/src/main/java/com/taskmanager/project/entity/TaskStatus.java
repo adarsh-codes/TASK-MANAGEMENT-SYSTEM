@@ -1,4 +1,4 @@
-package com.taskmanager.project.task.entity;
+package com.taskmanager.project.entity;
 
 public enum TaskStatus {
     TODO, IN_PROGRESS, DONE, BLOCKER

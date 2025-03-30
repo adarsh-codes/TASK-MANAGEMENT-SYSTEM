@@ -10,7 +10,6 @@ body {
     color: #333;
 }
 
-/* Navigation Bar */
 .topheader {
     position: sticky;
     top: 0;
@@ -58,7 +57,6 @@ nav ul li:hover {
     transform: scale(1.1);
 }
 
-/* Buttons */
 button {
     cursor: pointer;
     color: white;
@@ -72,7 +70,7 @@ button {
 
 button:hover {
     background: white;
-    color: #1abc9c;
+    color: #0c1816;
     transform: scale(1.1);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -81,7 +79,6 @@ button:hover {
     margin-left: auto;
 }
 
-/* User Account Icon */
 #userMenu {
     margin-left: auto;
     display: flex;
@@ -104,10 +101,7 @@ button:hover {
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
 }
 
-/* Task Container */
 
-
-/* Task Container */
 .taskContainer {
     background: white;
     border-radius: 10px;
@@ -119,14 +113,12 @@ button:hover {
     
 }
 
-/* Task List */
 #taskList {
     display: flex;
     flex-wrap: wrap;
 
 }
 
-/* Task Item */
 .task-item {
     background: antiquewhite;
     padding: 20px;
@@ -166,7 +158,6 @@ button:hover {
 }
 
 
-/* Task Priority */
 .task-priority {
     display: inline-block;
     padding: 6px 12px;
@@ -192,7 +183,6 @@ button:hover {
     color: white;
 }
 
-/* Task Status */
 .task-status {
     display: inline-block;
     padding: 6px 12px;
@@ -222,7 +212,6 @@ button:hover {
     color: white;
 }
 
-/* Task Actions (Buttons) */
 .task-actions {
     position: absolute;
     bottom: 20px;
@@ -267,15 +256,31 @@ button:hover {
     opacity: 0.8;
 }
 
-/* Task Form */
+.task-div-blur{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(5px); 
+    display: none; 
+    z-index: 99; 
+  
+}
+
 #taskFormContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: white;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    margin: 20px auto;
-    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100; 
+    display: none; 
+ 
 }
 
 #taskForm input, 
@@ -289,7 +294,6 @@ button:hover {
     font-size: 1rem;
 }
 
-/* Buttons */
 #addTaskBtn {
     padding: 12px 20px;
     background: #3498db;
@@ -320,6 +324,7 @@ button:hover {
 #cancelTaskBtn {
     background: #e74c3c;
     color: white;
+    gap: 10px;
 }
 
 #cancelTaskBtn:hover {
@@ -330,7 +335,6 @@ button:hover {
 
 
 
-/* Filters */
 .filters {
     display: flex;
     justify-content: center;
@@ -351,7 +355,6 @@ button:hover {
     background: #3498db;
 }
 
-/* Footer */
 .bottom {
     position: sticky;
     bottom: 0;
@@ -391,15 +394,18 @@ body {
 
 .sidewindow {
     width: 250px;
-    background: navajowhite;
+    background: black;
     border-right: 5px solid #0e18a2;
     position: fixed;
     top: 65px; 
     bottom: 65px; 
     left: 0;
     z-index: 100;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    background: #1f1f1f;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     display: block; 
+    overflow: scroll;
+    scrollbar-width: none;
 }
 
 .taskContainer {
@@ -417,6 +423,7 @@ body {
 .lists {
     list-style-type: none;
     padding: 0;
+   
 }
 
 .lists li {
@@ -425,159 +432,89 @@ body {
     transition: background-color 0.3s ease;
     font-size: 20px;
     margin-top: 10px;
+    color: antiquewhite;
+    font-weight: bolder;
+}
+
+.lists li.selected {
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+    margin-top: 10px;
+    color: antiquewhite;
+    font-weight: bolder;
+    background: gray;
 }
 
 
 
 
 .lists li:hover {
-    background-color: rgba(101, 110, 25, 0.1);
+    background-color: rgba(231, 237, 239, 0.1);
 }
 
 
 
-/* .usermanage{
-    display: none;
+.userManage{
     background: #1C1C1C;
     color: white;
     position: absolute;
     z-index: 1000;
     right: 0;
     top: 65px;
-    height: 50%;
+    height: 80%;
     width: 30%;
-    overflow: none;
-    border-radius: 5px;
-    border-width: 10px;
-    border-color: white;
-    padding: 10px;
-    display: flex;
+    padding: 2%;
     flex-direction: column;
-    justify-content: center;
-} */
+}
+.emailWrite, .userWrite,.oldpassWord, .newpassWord{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    font-size: large;
+    padding: 2%;
+    border-radius: 1em;
+}
 
 .heading{
-    margin-left: 50%;
+    margin-top: 1%;
+    margin-left: 40%;
+}
+#emailEdit, #usernameEdit{
+    margin-top: 1%;
+    margin-bottom: 6%;
 }
 
-.usericon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid white;
+#emailEdit:hover, #usernameEdit:hover{
+    background: #1abc9c;
+}
+
+#passwordEdit{
+    bottom: 1%;
+}
+#closeManage{
+    margin-left: 80%;
+    background: red;
+}
+
+
+.details{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    font-size: larger;
+    margin-top: 5%;
 }
 
 
 
 
-/* Responsive Styles */
 
-/* Medium Screens (Tablets) */
-@media (max-width: 1024px) {
-    .taskContainer {
-        width: 100%;
-        margin-left: 0; /* Remove left margin for better fit */
-        padding: 20px;
-    }
 
-    .sidewindow {
-        width: 220px; /* Reduce size */
-    }
 
-    .taskContainer {
-        margin-left: 220px;
-        width: calc(100% - 220px);
-    }
 
-    .task-item {
-        width: 48%; /* Make task items fit better */
-    }
 
-    #addTaskbtn{
-        margin-right: auto;
-        width: 20%;
-    }
 
-    .com-btn{
-        font-size: 12px;
-    }
-}
 
-/* Small Screens (Phones) */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-    }
-
-    .sidewindow {
-        width: 100%;
-        position: relative;
-        border-right: none;
-    }
-
-    .taskContainer {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .task-item {
-        width: 100%; /* Stack task items */
-    }
-
-    #addTaskBtn {
-        width: 100%;
-        text-align: center;
-    }
-
-    .buttonstop {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #addTaskbtn{
-        margin-right: auto;
-        width: 20%;
-    }
-
-    .com-btn{
-        font-size: 12px;
-    }
-}
-
-/* Extra Small Screens (Mobile) */
-@media (max-width: 480px) {
-    .task-item {
-        width: 100%;
-    }
-
-    .sidewindow {
-        display: none; /* Hide sidebar on very small screens */
-    }
-
-    .taskContainer {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    nav ul {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .bottom {
-        font-size: 0.9rem;
-        text-align: center;
-    }
-    #addTaskbtn{
-        margin-right: auto;
-        width: 20%;
-    }
-
-    .com-btn{
-        font-size: 12px;
-    }
-}
 
 

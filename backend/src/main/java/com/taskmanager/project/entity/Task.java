@@ -1,6 +1,5 @@
-package com.taskmanager.project.task.entity;
+package com.taskmanager.project.entity;
 
-import com.taskmanager.project.auth.entity.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

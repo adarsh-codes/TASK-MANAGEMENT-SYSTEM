@@ -1,9 +1,10 @@
 package com.taskmanager.project.controller;
 
-import com.taskmanager.project.task.entity.Task;
+import com.taskmanager.project.entity.Task;
 import com.taskmanager.project.service.TaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.taskmanager.project.repository.TaskRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,9 +14,11 @@ import java.util.Optional;
 public class TaskController {
 
     private final TaskService taskService;
+    private final TaskRepository taskRepository;
 
-    public TaskController(TaskService taskService) {
+    public TaskController(TaskService taskService,TaskRepository taskRepository) {
         this.taskService = taskService;
+        this.taskRepository = taskRepository;
     }
 
 
@@ -47,4 +50,22 @@ public class TaskController {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/tasks/{id}")
+    public ResponseEntity<Task> updateTaskdetail(@PathVariable Long id, @RequestBody Task updatedTask) {
+        Optional<Task> optionalTask = taskRepository.findById(id);
+
+        if (optionalTask.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Task existingTask = optionalTask.get();
+        existingTask.setPriority(updatedTask.getPriority());
+        existingTask.setStatus(updatedTask.getStatus());
+
+        Task savedTask = taskRepository.save(existingTask);
+        return ResponseEntity.ok(savedTask);
+    }
+
+
 }
