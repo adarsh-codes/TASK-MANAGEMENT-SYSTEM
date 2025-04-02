@@ -80,11 +80,7 @@ cd task-management-system
   ```bash
   cd frontend
   ```
-- Open `index.html` in a browser:
-  ```bash
-  open index.html   # Mac/Linux
-  start index.html  # Windows
-  ```
+- Open `entry.html` in VSCODE and go live on PORT 5500 using LIVE SERVER :
 
 #### **2. Connect Frontend to Backend**
 - Ensure `fetch` requests in JavaScript use the correct **backend URL (`http://localhost:8080`)**.
@@ -107,6 +103,14 @@ cd task-management-system
 - Use the **JWT token** from login to access protected endpoints.
 
 ---
+
+## FUTURE ENHANCEMENTS
+- User Account Management
+- Email notifications for approaching deadlines
+- Dark/light theme toggle
+- Task categories and tags
+- Role based Access Control (Admin, User)
+
 
   
 
