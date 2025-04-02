@@ -1,7 +1,7 @@
 const signupbutton = document.getElementById("signupbtn");
 const loginbutton = document.getElementById("loginbtn");
 
-const userMenu = document.getElementById("userMenu");
+const userMenu = document.getElementById("userManage");
 const userIcon = document.getElementById("userIcon");
 const taskContainer = document.querySelector(".taskContainer");
 
@@ -10,31 +10,29 @@ const token = localStorage.getItem("jwtToken");
 if (token) {
   signupbutton.style.display = "none";
   loginbutton.style.display = "none";
-  userMenu.style.display = "block";
+  
 
   fetchTasks(token);
 } else {
   signupbutton.style.display = "block";
   loginbutton.style.display = "block";
-  userMenu.style.display = "none";
 }
 
-// document.getElementById('logOut').onclick = function(){
-//   if (!confirm("Are you sure you want to log out?")) return;
+document.getElementById('logOut').onclick = function(){
+  if (!confirm("Are you sure you want to log out?")) return;
 
-//   localStorage.removeItem("jwtToken");
-//   signupbutton.style.display = "block";
-//   loginbutton.style.display = "block";
-//   userMenu.style.display = "none";
+  localStorage.removeItem("jwtToken");
+  signupbutton.style.display = "block";
+  loginbutton.style.display = "block";
+  
+  document.getElementById("taskList").innerHTML =
+    "<p>You have been logged out.</p>";
 
-//   document.getElementById("taskList").innerHTML =
-//     "<p>You have been logged out.</p>";
+  setTimeout(() => {
+    window.location.href = "entry.html";
+  }, 1000);
 
-//   setTimeout(() => {
-//     window.location.href = "entry.html";
-//   }, 1000);
-
-// }
+}
 
 async function fetchTasks(token) {
   await fetch("http://localhost:8080/tasks/user", {
@@ -82,7 +80,10 @@ async function fetchTasks(token) {
     <span class="task-priority priority-${priorityClass}">${
             task.priority
           }</span>
-    <span class="task-status status-${statusClass}">${task.status.replace( "_"," ")}</span>
+    <span class="task-status status-${statusClass}">${task.status.replace(
+            "_",
+            " "
+          )}</span>
     <br>
    
     <span class="task-due-date">📅 Due Date: ${
@@ -212,7 +213,7 @@ function deleteTask(taskId) {
 
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskFormContainer = document.getElementById("taskFormContainer");
-const taskblur = document.querySelector('.task-div-blur');
+const taskblur = document.querySelector(".task-div-blur");
 const cancelTaskBtn = document.getElementById("cancelTaskBtn");
 
 addTaskBtn.onclick = function () {
@@ -381,78 +382,81 @@ function manageUser() {
   let manageuserdiv = document.querySelector(".userManage");
 
   manageuserdiv.hidden = !manageuserdiv.hidden;
-
- 
 }
 
-document.getElementById('closeManage').onclick = function(){
+document.getElementById("closeManage").onclick = function () {
   let manageuserdiv = document.querySelector(".userManage");
 
   manageuserdiv.hidden = !manageuserdiv.hidden;
+};
+
+
+
+function changeInput(inptype) {
+  let emailinput = document.getElementById(inptype);
+
+  if (emailinput.hasAttribute("readonly")) {
+    emailinput.removeAttribute("readonly");
+    emailinput.focus();
+   
+  } else {
+    emailinput.setAttribute("readonly", true);
+  }
 }
 
+async function changePass() {
+    let passfield = document.querySelector('.newpassWord');
+    let userfield = document.querySelector('.userWrite');
+
+    let userdetails = getUserDetailsFromToken();
+
+    if(!confirm('Are you sure to save changes?')){
+      return;
+    }
+
+    if(passfield.value.trim() == ""){
+      if(userfield.value == userdetails.username){
+        alert("No changes made!");
+        return; 
+      }
+    }
+
+    if(userfield.value == userdetails.username){
+      if(passfield.value.length < 8){
+        alert("Password should be atleast 8 characters.");
+        return;
+      }
+    }
+
+   
+
+    let token = localStorage.getItem('jwtToken');
 
 
-// // change email, username, password
+    
+    const data = {
+      username: userfield.value,
+      email: userdetails.email,
+      password: passfield.value
+    }
 
-// // Function to enable editing for Email
-// function changeEmail() {
-//   let emailInput = document.querySelector('.emailWrite');
-//   let emailBtn = document.getElementById('emailEdit');
+    try{
+      const response = await fetch('http://localhost:8080/auth/change',{
+        "method":"PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+      })
 
-//   if (emailBtn.innerText === "Change Email") {
-//     emailInput.readOnly = false;
-//     emailInput.focus();
-//     emailBtn.innerText = "Save Email";
-//   } else {
-//     let newEmail = emailInput.value.trim();
-//     if (!validateEmail(newEmail)) {
-//       alert("Invalid email format!");
-//       return;
-//     }
-//     emailInput.readOnly = true;
-//     emailBtn.innerText = "Change Email";
-//     alert("Email updated successfully!");
-//   }
-// }
+      const d = await response.text();
 
-// // Function to enable editing for Username
-// function changeUsername() {
-//   let userInput = document.querySelector('.userWrite');
-//   let userBtn = document.getElementById('usernameEdit');
-
-//   if (userBtn.innerText === "Change Username") {
-//     userInput.readOnly = false;
-//     userInput.focus();
-//     userBtn.innerText = "Save Username";
-//   } else {
-//     let newuser = userInput.value.trim();
-
-//     userInput.readOnly = true;
-//     userBtn.innerText = "Change Username";
-//     alert("Username updated successfully!");
-//   }
-// }
-
-// // Function to show/hide password fields
-// function changePass() {
-//   let oldPasswordInput = document.querySelector('.oldpassWord');
-//   let newPasswordInput = document.querySelector('.newpassWord');
-//   let passwordEditButton = document.getElementById('passwordEdit');
-
-//   let isHidden = oldPasswordInput.hidden && newPasswordInput.hidden;
-//   oldPasswordInput.hidden = !isHidden;
-//   newPasswordInput.hidden = !isHidden;
-
-//   passwordEditButton.textContent = isHidden ? "Save Password" : "Change Password";
-// }
-
-// // Email validation function
-// function validateEmail(email) {
-//   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-// }
-
-
-
-
-
+      alert(`Success ${d}`);
+      window.location.href = "entry.html";
+    }
+    catch(error){
+      console.log(error);
+      alert(`failed! ${d}`)
+    }
+}

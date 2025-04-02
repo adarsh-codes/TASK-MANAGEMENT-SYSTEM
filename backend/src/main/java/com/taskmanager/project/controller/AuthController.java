@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin(origins = "http://127.0.0.1:5500", allowedHeaders = "*")
+@CrossOrigin(origins = {"http://127.0.0.1:5500","http://localhost:5500"}, allowedHeaders = "*")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -51,6 +51,33 @@ public class AuthController {
 
         return ResponseEntity.ok(token);
     }
+
+    @PutMapping("/change")
+    public ResponseEntity<String> change(@RequestBody User user) {
+
+        User existingUser = userRepository.findByEmail(user.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+
+        if (!existingUser.getUsername().equals(user.getUsername()) &&
+                userRepository.findByUsername(user.getUsername()).isPresent()) {
+            return ResponseEntity.badRequest().body("Username already taken!");
+        }
+
+
+        existingUser.setUsername(user.getUsername());
+
+
+        if (user.getPassword() != null && !user.getPassword().trim().isEmpty()) {
+            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+
+        userRepository.save(existingUser);
+
+
+        return ResponseEntity.ok("USER PROFILE UPDATED! PLEASE LOGIN AGAIN WITH THE NEW USERNAME");
+    }
+
 }
 
 

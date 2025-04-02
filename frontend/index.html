@@ -21,7 +21,7 @@
           </li>
           <li id="signup"><button id="signupbtn">&#9204; SIGNUP</button></li>
           <li id="userMenu" onclick="manageUser()">
-            <span class="displayUsername"></span>
+            <span class="displayUsername"> </span>
             <img src="user-icon.png" alt="User" id="userIcon" />
           </li>
         </ul>
@@ -45,14 +45,13 @@
       <button id="closeManage">Close</button>
       <div class="details">
         <span>Email :</span>
-        <input type="email" class="emailWrite"></input>
-        <button id="emailEdit" onclick="changeEmail()">Change Email</button>
+        <input type="email" class="emailWrite" id="em" readonly></input>
         <span>Username :</span>
-        <input type="text" class="userWrite"></input>
-        <button id="usernameEdit" onclick="changeUsername()">Change Username</button>
-        <input class="oldpassWord" type="text" hidden placeholder="Old Password">
-        <input class="newpassWord" type="text" hidden placeholder="New Password">
-        <button id="passwordEdit" onclick="changePass()">Change Password</button>
+        <input type="text" class="userWrite" id="us" readonly></input>
+        <button id="usernameEdit" onclick="changeInput('us')">Change Username</button>
+        <input class="newpassWord" type="text" placeholder="New Password">
+        <button id="passwordEdit" onclick="changePass()">Save Changes</button>
+        <button id="logOut">LOGOUT</button>
       </div>
     </div>
 

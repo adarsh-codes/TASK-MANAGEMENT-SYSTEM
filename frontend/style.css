@@ -468,9 +468,9 @@ body {
     padding: 2%;
     flex-direction: column;
 }
-.emailWrite, .userWrite,.oldpassWord, .newpassWord{
-    margin-top: 4%;
-    margin-bottom: 4%;
+.emailWrite, .userWrite, .newpassWord{
+    margin-top: 2%;
+    margin-bottom: 2%;
     font-size: large;
     padding: 2%;
     border-radius: 1em;
@@ -497,6 +497,10 @@ body {
     background: red;
 }
 
+#logOut{
+    background: red;
+    margin-top: 8%;
+}
 
 .details{
     display: flex;
@@ -653,9 +657,7 @@ body {
 }
 
 @media screen and (max-width: 480px) {
-    /* nav ul li:not(#login):not(#userMenu) {
-        display: none;
-    } */
+    
     
     .logo {
         font-size: 1rem;
