@@ -79,10 +79,10 @@ async function fetchTasks(token) {
     <hr size="5">
     <p>${task.description || "No description"}</p>
     <hr size="2">
-    <span class="task-priority priority-${priorityClass}" onclick="editPriority(this,${task.id})">${
+    <span class="task-priority priority-${priorityClass}">${
             task.priority
           }</span>
-    <span class="task-status status-${statusClass} onclick="editStatus(this,${task.id})"">${task.status.replace( "_"," ")}</span>
+    <span class="task-status status-${statusClass}">${task.status.replace( "_"," ")}</span>
     <br>
    
     <span class="task-due-date">📅 Due Date: ${
@@ -314,76 +314,39 @@ function selectMenuItem(clickedItem) {
   clickedItem.classList.add("selected");
 }
 
-function showAll() {
-  const allbtn = document.getElementById("all");
-  selectMenuItem(allbtn);
-  const taskcard = document.querySelectorAll(".task-item");
-
-  taskcard.forEach((task) => {
-    task.style.display = "block";
-  });
-}
-
-function showpending() {
-  const pendbtn = document.getElementById("pend");
-  selectMenuItem(pendbtn);
-  const taskcard = document.querySelectorAll(".task-item");
-
-  taskcard.forEach((task) => {
-    const st = task.getAttribute("data-status");
-    if (st === "DONE") {
-      task.style.display = "none";
-    } else {
-      task.style.display = "block";
-    }
-  });
-}
-
-function showcomplete() {
-  const compbtn = document.getElementById("comp");
-  selectMenuItem(compbtn);
-  const taskcard = document.querySelectorAll(".task-item");
-
-  taskcard.forEach((task) => {
-    const st = task.getAttribute("data-status");
-    if (st === "DONE") {
-      task.style.display = "block";
-    } else {
-      task.style.display = "none";
-    }
-  });
-}
-
-function showoverdue() {
-  const overbtn = document.getElementById("overdue");
-  selectMenuItem(overbtn);
-  const taskcard = document.querySelectorAll(".task-item");
-
+function filterTasks(filterType) {
+  const taskcards = document.querySelectorAll(".task-item");
   const today = new Date().toISOString().split("T")[0];
 
-  taskcard.forEach((task) => {
-    const dueDate = task.getAttribute("data-due");
-    if (dueDate && dueDate < today) {
-      task.style.display = "block";
-    } else {
-      task.style.display = "none";
-    }
-  });
-}
+  taskcards.forEach((task) => {
+    const status = task.getAttribute("data-status");
+    const priority = task.getAttribute("data-priority");
+    const dueDate = task.getAttribute("data-due-date");
 
-function showhigh() {
-  const hbtn = document.getElementById("h");
-  selectMenuItem(h);
-  const taskcard = document.querySelectorAll(".task-item");
+    let shouldShow = false;
 
-  taskcard.forEach((task) => {
-    const st = task.getAttribute("data-priority");
-    if (st === "HIGH") {
-      task.style.display = "block";
-    } else {
-      task.style.display = "none";
+    switch (filterType) {
+      case "all":
+        shouldShow = true;
+        break;
+      case "pending":
+        shouldShow = status !== "DONE";
+        break;
+      case "complete":
+        shouldShow = status === "DONE";
+        break;
+      case "overdue":
+        shouldShow = dueDate && dueDate < today;
+        break;
+      case "highP":
+        shouldShow = priority === "HIGH";
+        break;
     }
+
+    task.style.display = shouldShow ? "block" : "none";
   });
+
+  selectMenuItem(document.getElementById(filterType));
 }
 
 // Function to decode JWT and get the payload

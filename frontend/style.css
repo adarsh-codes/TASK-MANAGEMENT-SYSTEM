@@ -511,7 +511,208 @@ body {
 
 
 
+/* media queries */
 
+
+
+@media screen and (max-width: 1024px) {
+    .taskContainer {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+    
+    .sidewindow {
+        width: 200px;
+    }
+    
+    .task-item {
+        width: 320px;
+    }
+    
+    nav ul {
+        padding: 0 10px;
+    }
+    
+    .userManage {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidewindow {
+        width: 180px;
+    }
+    
+    .taskContainer {
+        margin-left: 180px;
+        width: calc(100% - 180px);
+        padding: 15px;
+    }
+    
+    .task-item {
+        width: 100%;
+        height: auto;
+        min-height: 350px;
+    }
+    
+    #taskList {
+        justify-content: center;
+    }
+    
+    .userManage {
+        width: 60%;
+    }
+    
+    .filters {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .logo {
+        font-size: 1.1rem;
+    }
+    
+    nav ul li {
+        padding: 0 10px;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .sidewindow {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        border-right: none;
+        border-bottom: 5px solid #0e18a2;
+        margin-top: 65px;
+        z-index: 90;
+    }
+    
+    .lists {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .lists li {
+        padding: 10px 15px;
+        margin: 5px;
+        border-radius: 20px;
+        background: #333;
+        font-size: 16px;
+    }
+    
+    .taskContainer {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 0;
+    }
+    
+    .userManage {
+        width: 90%;
+        height: 90%;
+    }
+    
+    .heading {
+        margin-left: 10%;
+    }
+    
+    #closeManage {
+        margin-left: 70%;
+    }
+    
+    nav ul {
+        height: 60px;
+    }
+    
+    .logo img {
+        height: 38px;
+        width: 50px;
+    }
+    
+    #addTaskBtn {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .buttonstop {
+        flex-direction: column;
+    }
+    
+    #userIcon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .bottom {
+        height: 50px;
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* nav ul li:not(#login):not(#userMenu) {
+        display: none;
+    } */
+    
+    .logo {
+        font-size: 1rem;
+    }
+    
+    .task-actions {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .task-actions button {
+        padding: 6px 10px;
+        font-size: 16px;
+    }
+    
+    .task-actions .com-btn {
+        margin-right: 0;
+    }
+    
+    .task-title {
+        font-size: 1.2rem;
+    }
+    
+    .task-due-date {
+        font-size: 16px;
+    }
+    
+    #taskFormContainer {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    
+   
+    .logo span {
+        display: none;
+    }
+    
+    .task-priority, .task-status {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .details {
+        margin-left: 5%;
+        font-size: 16px;
+    }
+    
+    .task-item {
+        padding: 15px;
+    }
+    
+    .filters select, .filters input {
+        font-size: 0.8rem;
+    }
+}
 
 
 

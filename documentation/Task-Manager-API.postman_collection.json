@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "88908ee7-d6d5-44b4-847d-2ceece90728b",
+		"name": "Task-Manager-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43377896",
+		"_collection_link": "https://me5555-9253.postman.co/workspace/89a765ff-65b5-45d6-ab91-14ed4530b4f9/collection/43377896-88908ee7-d6d5-44b4-847d-2ceece90728b?action=share&source=collection_link&creator=43377896"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"ada123\",\r\n    \"email\":\"adarsh7890@gmail.com\",\r\n    \"password\":\"1234567890\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/auth/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"ada123\",\r\n    \"password\":\"1234567890\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/tasks/user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGExMjMiLCJlbWFpbCI6ImFkYXJzaDc4OTBAZ21haWwuY29tIiwiaWF0IjoxNzQzNTA1MDkwLCJleHAiOjE3NDM1MDg2OTB9.ppMPBLYL0_gpG1Z3vaCo43wBx_kmhAgYJnSOJYBIlQk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"task-1\",\r\n    \"priority\":\"HIGH\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tasks/28",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"28"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/tasks/user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGExMjMiLCJlbWFpbCI6ImFkYXJzaDc4OTBAZ21haWwuY29tIiwiaWF0IjoxNzQzNTIzNTQ4LCJleHAiOjE3NDM1MjcxNDh9.JpwchkOXBZhUPIJuwz5h4KYQpXWJJSAC1GxrvqtmBI4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/tasks/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/tasks/user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGExMjMiLCJlbWFpbCI6ImFkYXJzaDc4OTBAZ21haWwuY29tIiwiaWF0IjoxNzQzNTIzNTQ4LCJleHAiOjE3NDM1MjcxNDh9.JpwchkOXBZhUPIJuwz5h4KYQpXWJJSAC1GxrvqtmBI4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/tasks/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
