@@ -31,10 +31,10 @@ The **Task Management System** is a web application that helps users manage task
 - `DELETE /tasks/{id}` → Delete a task
 
 ## Architecture Diagram
-*(Include your architecture diagram here if available)*
+
 
 ## ER Diagram
-*(Include your entity-relationship diagram here if available)*
+
 
 ## Setup Instructions
 1. **Clone the Repository**
