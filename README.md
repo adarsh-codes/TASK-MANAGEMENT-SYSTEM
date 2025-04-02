@@ -6,7 +6,7 @@ The **Task Management System** is a web application that helps users manage task
 ## Features
 - User authentication with JWT (Login & Registration)
 - Create, update, delete, and retrieve tasks
-- Filter tasks by status (`Pending`, `Completed`, `Overdue`)
+- Filter tasks by status (`Pending`, `Completed`, `Overdue`,`Blocker`)
 - Prioritize tasks (`Low`, `Medium`, `High`)
 - Secure backend with Spring Boot & PostgreSQL
 
@@ -28,7 +28,7 @@ The **Task Management System** is a web application that helps users manage task
 
 ### Task Management
 - `POST /tasks` → Create a new task
-- `GET /tasks` → Get all tasks
+- `GET /tasks/user` → Get all tasks
 - `GET /tasks/{id}` → Get a task by ID
 - `PUT /tasks/{id}` → Update a task
 - `DELETE /tasks/{id}` → Delete a task
