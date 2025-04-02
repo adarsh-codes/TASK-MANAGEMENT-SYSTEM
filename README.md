@@ -99,8 +99,7 @@ cd task-management-system
   ```
 
 #### **3. Run the Application**
-- Open **Postman** and test the APIs.  
-- Use the **JWT token** from login to access protected endpoints.
+- increase your productivity by organising daily tasks!
 
 ---
 
