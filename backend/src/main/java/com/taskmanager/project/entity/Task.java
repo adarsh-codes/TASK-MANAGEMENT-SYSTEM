@@ -28,10 +28,10 @@ public class Task {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // No-Args Constructor
+
     public Task() {}
 
-    // All-Args Constructor
+
     public Task(Long id, String title, String description, TaskPriority priority, TaskStatus status, LocalDate dueDate, User user) {
         this.id = id;
         this.title = title;

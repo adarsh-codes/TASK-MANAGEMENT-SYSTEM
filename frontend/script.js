@@ -427,13 +427,7 @@ async function changePass() {
         return;
       }
     }
-
-   
-
     let token = localStorage.getItem('jwtToken');
-
-
-    
     const data = {
       username: userfield.value,
       email: userdetails.email,

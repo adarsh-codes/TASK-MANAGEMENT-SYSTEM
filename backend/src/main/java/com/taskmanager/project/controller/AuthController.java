@@ -37,15 +37,11 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<String> login(@RequestBody LoginRequestDTO user) {
         if(!userRepository.findByUsername(user.getUsername()).isPresent()){
             return ResponseEntity.badRequest().body("Username not found! Please Register first!");
         }
-
-
         String token = authService.login(user.getUsername(), user.getPassword(),userRepository.findEmail(user.getUsername()).orElse(null));
-
-
         return ResponseEntity.ok(token);
     }
 
@@ -57,6 +53,8 @@ public class AuthController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+
+        
     }
 }
 
