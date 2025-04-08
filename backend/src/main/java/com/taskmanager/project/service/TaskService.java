@@ -79,4 +79,24 @@ public class TaskService {
     public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }
+
+    public Optional<Task> updateTaskDetails(Long id, Task updatedTask) {
+        Optional<Task> optionalTask = taskRepository.findById(id);
+
+        if (optionalTask.isEmpty()) {
+            return Optional.empty();
+        }
+
+        Task existingTask = optionalTask.get();
+        existingTask.setPriority(updatedTask.getPriority());
+        existingTask.setStatus(updatedTask.getStatus());
+
+        Task savedTask = taskRepository.save(existingTask);
+        return Optional.of(savedTask);
+    }
+
+
+    public List<Task> getHighPriorityTasks(){
+        return taskRepository.findByPriority();
+    }
 }

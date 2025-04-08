@@ -2,6 +2,8 @@ package com.taskmanager.project.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
@@ -9,10 +11,17 @@ import java.util.function.Function;
 
 @Component
 public class JwtUtil {
-    private static final String SECRET_KEY = "12hjv3g2vg413v2h3v2gv432gnv4n32gv4gn32v4g32v4gb323v232nm4bhj23vqe432hqnvenavdbnevafnmvd";
-    private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 5; // 5 hours
 
-    private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    @Value("${app.jwt.secret}")
+    private String SECRET_KEY;
+    private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 5;
+
+    private Key key;
+
+    @PostConstruct
+    public void init() {
+        this.key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    }
 
     public String generateToken(String username,String email) {
         return Jwts.builder()

@@ -29,6 +29,12 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
+    @GetMapping("/user/high")
+    public ResponseEntity<List<Task>> gethightasks(){
+        List<Task> high = taskService.getHighPriorityTasks();
+        return ResponseEntity.ok(high);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
         Optional<Task> task = taskService.getTaskById(id);
@@ -53,18 +59,10 @@ public class TaskController {
 
     @PutMapping("/tasks/{id}")
     public ResponseEntity<Task> updateTaskdetail(@PathVariable Long id, @RequestBody Task updatedTask) {
-        Optional<Task> optionalTask = taskRepository.findById(id);
+        Optional<Task> updated = taskService.updateTaskDetails(id, updatedTask);
 
-        if (optionalTask.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Task existingTask = optionalTask.get();
-        existingTask.setPriority(updatedTask.getPriority());
-        existingTask.setStatus(updatedTask.getStatus());
-
-        Task savedTask = taskRepository.save(existingTask);
-        return ResponseEntity.ok(savedTask);
+        return updated.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 
