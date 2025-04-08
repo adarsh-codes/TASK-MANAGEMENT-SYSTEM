@@ -1,5 +1,8 @@
 package com.taskmanager.project.controller;
 
+import com.taskmanager.project.dto.UserProfileUpdateDTO;
+import com.taskmanager.project.dto.LoginRequestDTO;
+import com.taskmanager.project.dto.SignUpRequestDTO;
 import com.taskmanager.project.entity.User;
 import com.taskmanager.project.repository.UserRepository;
 import com.taskmanager.project.service.AuthService;
@@ -24,20 +27,14 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody User user) {
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("User already exists! Please Log In!");
+    public ResponseEntity<String> register(@RequestBody SignUpRequestDTO user) {
+        try {
+            String response = authService.register(user);
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-
-        return ResponseEntity.ok("User registered successfully!");
     }
-
-
-
-
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody User user) {
@@ -53,31 +50,14 @@ public class AuthController {
     }
 
     @PutMapping("/change")
-    public ResponseEntity<String> change(@RequestBody User user) {
-
-        User existingUser = userRepository.findByEmail(user.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-
-        if (!existingUser.getUsername().equals(user.getUsername()) &&
-                userRepository.findByUsername(user.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Username already taken!");
+    public ResponseEntity<String> change(@RequestBody UserProfileUpdateDTO userDto) {
+        try {
+            String response = authService.updateUserProfile(userDto);
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-
-
-        existingUser.setUsername(user.getUsername());
-
-
-        if (user.getPassword() != null && !user.getPassword().trim().isEmpty()) {
-            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
-
-        userRepository.save(existingUser);
-
-
-        return ResponseEntity.ok("USER PROFILE UPDATED! PLEASE LOGIN AGAIN WITH THE NEW USERNAME");
     }
-
 }
 
 
